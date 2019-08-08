@@ -1,6 +1,12 @@
 ## Cloudlens CLI
 Author: Michael Wan
 
+### Dependencies
+- Kubectl ([Installation Guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/))
+- Python3
+- PyYaml (Pip Package)
+
+
 ### Installation
 - Run ```install.sh``` as root user in a UNIX shell
 - Cloudlens is now properly installed
