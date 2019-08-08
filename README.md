@@ -80,7 +80,7 @@ First, the webhook needs to be started:
 root@ubuntu:~$ cloudlens start webhook
 Successfully created webhook.
 ```
-Before we continue, we must properly configure our Cloudlens project API key. If you haven't already, access the online [hub](https://ixia-sandbox.cloud) and create a project. We'll work in the default namespace.
+Before we continue, we must properly configure our Cloudlens project API key. If you haven't already, access the online [hub](https://ixia-sandbox.cloud) and create a project. We'll work in the default namespace in Kubernetes.
 ```console
 root@ubuntu:~$ cloudlens config key [ENTER YOUR CLOUDLENS PROJECT API KEY] --namespace default
 Successfully configured key for namespace default.
@@ -102,6 +102,11 @@ Webhook running with no issues.
 	dsvw-deployment-5d477fc6d8-ztm8j (default)
 ```
 Don't worry if the IDs aren't the same, they're randomly generated.
+
+Lastly, to expose our app so that we can access it, we must deploy the following service:
+```console
+root@ubuntu~$ kubectl apply -f demo/test-dsvw-service.yaml
+``` 
 
 ### 2. Online Cloudlens configuration
 Now that the cloudlens agents are up, we need to configure them on the online hub so that they'll pass their traffic to the cloudlens agent sitting inside the sensor app.
