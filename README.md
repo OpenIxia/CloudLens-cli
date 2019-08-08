@@ -33,12 +33,12 @@ Webhook running with no issues.
 ### Starting a deployment
 We can now start our deployments, which will automatically have Cloudlens agents injected into them. To start a deployment, we run:
 ```console
-cloudlens start deployment --yaml [YAML file path]
+root@ubuntu:~$ cloudlens start deployment --yaml [YAML file path]
 ```
 
 We can also pass in additional optional arguments such as labels and a namespace to deploy in (the default is the "default" namespace):
 ```console
-cloudlens start deployment --yaml [YAML file path] --labels label1=Hi label2="Hello World" --namespace [NAMESPACE]
+root@ubuntu:~$ cloudlens start deployment --yaml [YAML file path] --labels label1=Hi label2="Hello World" --namespace [NAMESPACE]
 ```
 
 Running ```cloudlens status``` again will allow us to view the status of the pods from the deployment:
@@ -51,14 +51,14 @@ Webhook running with no issues.
 ### Shutting down a deployment
 There are many different ways to shut down a deployment:
 ```console
-cloudlens shutdown deployment [DEPLOYMENT NAME]
-cloudlens shutdown deployment --labels label1=Hi # Shutting down deployments using a label selector
-cloudlens shutdown deployment [DEPLOYMENT NAME] --namespace default # Specifying a specific namespace to target
-cloudlens shutdown deployment [DEPLOYMENT NAME] --all-namespaces # Deleting the deployment in all namespaces
+root@ubuntu:~$ cloudlens shutdown deployment [DEPLOYMENT NAME]
+root@ubuntu:~$ cloudlens shutdown deployment --labels label1=Hi # Shutting down deployments using a label selector
+root@ubuntu:~$ cloudlens shutdown deployment [DEPLOYMENT NAME] --namespace default # Specifying a specific namespace to target
+root@ubuntu:~$ cloudlens shutdown deployment [DEPLOYMENT NAME] --all-namespaces # Deleting the deployment in all namespaces
 ```
 ### Shutting down the webhook
 ```console
-cloudlens shutdown webhook
+root@ubuntu:~$ cloudlens shutdown webhook
 ```
 
 ## Demo
