@@ -67,3 +67,33 @@ cloudlens shutdown webhook
 ```
 
 ## Demo
+For the demo shown during the CLI presentation, a DSVW app was deployed with Cloudlens automatically injected. In the background, there were two apps running: a sensor app to snort for attacks, and a ELK stack to allow for users to visualize and analyze the data.
+
+The sensor and ELK apps exist under the Open Ixia [sample-cloud-ids](https://github.com/OpenIxia/sample-cloud-ids) repo in the respective folders ```sensor/``` and ```events_ui/```. Follow the instructions in the READMEs of both directories to successfully launch the apps.
+
+Thus, for simplicity, the CLI tool will only be used to deploy the DSVW app with cloudlens injection.
+
+First, the webhook needs to be started:
+```console
+root@ubuntu:~$ cloudlens start webhook
+Successfully created webhook.
+```
+Now, the DSVW app can be deployed:
+```console
+root@ubuntu:~$ cloudlens start deployment --yaml demo/test-dsvw.yaml --labels workload=dsvw
+Successfully created deployment demo/test-dsvw.yaml
+```
+Status check:
+```console
+root@ubuntu:~$ cloudlens status
+Webhook running with no issues.
+5 pods running with cloudlens containers installed:
+	dsvw-deployment-5d477fc6d8-229gb (default)
+	dsvw-deployment-5d477fc6d8-2w6kn (default)
+	dsvw-deployment-5d477fc6d8-fhg6c (default)
+	dsvw-deployment-5d477fc6d8-ldhpz (default)
+	dsvw-deployment-5d477fc6d8-ztm8j (default)
+```
+Don't worry if the IDs aren't the same, they're randomly generated.
+
+
