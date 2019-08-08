@@ -38,12 +38,20 @@ Webhook running with no issues.
 ```
 
 Shutting down deployments is very similar to starting them:
-```cloudlens shutdown deployment [DEPLOYMENT NAME]```
+```
+cloudlens shutdown deployment [DEPLOYMENT NAME]
+```
 We can also shut down deployments using a label selector
-```cloudlens shutdown deployment --labels label1=Hi```
+```
+cloudlens shutdown deployment --labels label1=Hi
+```
 Also, we can shut down deployments in specific namespaces, or in all namespaces:
-```cloudlens shutdown deployment [DEPLOYMENT NAME] --namespace default```
+```
+cloudlens shutdown deployment [DEPLOYMENT NAME] --namespace default
+```
 Or
-```cloudlens shutdown deployment [DEPLOYMENT NAME] --all-namespaces```
+```
+cloudlens shutdown deployment [DEPLOYMENT NAME] --all-namespaces
+```
 
 ### Demo
