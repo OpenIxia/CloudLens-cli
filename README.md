@@ -1,15 +1,12 @@
 # Cloudlens CLI
 Author: Michael Wan
 
+
 ## Dependencies
 - Kubectl ([Installation Guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/))
 - Python3
 - PyYaml (Pip Package)
 
-
-## Installation
-- Run ```install.sh``` as root user in a UNIX shell
-- Cloudlens is now properly installed
 
 ## Overview
 - Cloudlens is a CLI prompted by the command ```cloudlens```
@@ -17,6 +14,12 @@ Author: Michael Wan
 	- Starting / shutting down webhook and deployments that require Cloudlens auto injection
 	- Configuring different Cloudlens projects per namespace (by specifying a specific API key per each namespace)
 	- Checking the status of webhook and pods with Cloudlens injected
+
+
+## Installation
+- Run ```install.sh``` as root user in a UNIX shell
+- Cloudlens is now properly installed
+
 
 ## Usage
 ### Starting a webhook
@@ -60,6 +63,7 @@ root@ubuntu:~$ cloudlens shutdown deployment [DEPLOYMENT NAME] --all-namespaces 
 ```console
 root@ubuntu:~$ cloudlens shutdown webhook
 ```
+
 
 ## Demo
 For the demo shown during the CLI presentation, a DSVW app was deployed with Cloudlens automatically injected. In the background, there were two apps running: a sensor app to snort for attacks, and a ELK stack to allow for users to visualize and analyze the data.
