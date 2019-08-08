@@ -5,14 +5,15 @@ Author: Michael Wan
 - Run ```install.sh``` as root user in a UNIX shell
 - Cloudlens is now properly installed
 
-### Usage
+### Overview
 - Cloudlens is a CLI prompted by the command ```cloudlens```
 - It offers the following functionalities:
 	- Starting / shutting down webhook and deployments that require Cloudlens auto injection
 	- Configuring different Cloudlens projects per namespace (by specifying a specific API key per each namespace)
 	- Checking the status of webhook and pods with Cloudlens injected
 
-#### Example Usage
+### Usage
+#### Starting a webhook
 First, let's start the webhook:
 ```console
 root@ubuntu:~$ cloudlens start webhook
@@ -23,6 +24,7 @@ The webhook is now successfully running, and we can check for its status by runn
 root@ubuntu:~$ cloudlens status
 Webhook running with no issues.
 ```
+#### Starting a deployment
 We can now start our deployments, which will automatically have Cloudlens agents injected into them. To start a deployment, we run:
 ```cloudlens start deployment --yaml [YAML file path]```
 
@@ -36,7 +38,7 @@ Webhook running with no issues.
 1 pod running with cloudlens containers installed:
 	test-deployment-5d477fc6d8-229gb (default)
 ```
-
+#### Shutting down a deployment
 Shutting down deployments is very similar to starting them:
 ```
 cloudlens shutdown deployment [DEPLOYMENT NAME]
@@ -52,6 +54,10 @@ cloudlens shutdown deployment [DEPLOYMENT NAME] --namespace default
 Or
 ```
 cloudlens shutdown deployment [DEPLOYMENT NAME] --all-namespaces
+```
+#### Shutting down the webhook
+```
+cloudlens shutdown webhook
 ```
 
 ### Demo
