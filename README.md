@@ -12,7 +12,7 @@ Author: Michael Wan
 	- Configuring different Cloudlens projects per namespace (by specifying a specific API key per each namespace)
 	- Checking the status of webhook and pods with Cloudlens injected
 
-#### Examples
+#### Example Usage
 First, let's start the webhook:
 ```console
 root@ubuntu:~$ cloudlens start webhook
@@ -29,5 +29,21 @@ We can now start our deployments, which will automatically have Cloudlens agents
 We can also pass in additional optional arguments such as labels and a namespace to deploy in (the default is the "default" namespace):
 ```cloudlens start deployment --yaml [YAML file path] --labels label1=Hi label2="Hello World" --namespace [NAMESPACE]```
 
+Running ```cloudlens status``` again will allow us to view the status of the pods from the deployment:
+```console
+root@ubuntu:~$ cloudlens status
+Webhook running with no issues.
+1 pod running with cloudlens containers installed:
+	test-deployment-5d477fc6d8-229gb (default)
+```
 
+Shutting down deployments is very similar to starting them:
+```cloudlens shutdown deployment [DEPLOYMENT NAME]```
+We can also shut down deployments using a label selector
+```cloudlens shutdown deployment --labels label1=Hi```
+Also, we can shut down deployments in specific namespaces, or in all namespaces:
+```cloudlens shutdown deployment [DEPLOYMENT NAME] --namespace default```
+Or
+```cloudlens shutdown deployment [DEPLOYMENT NAME] --all-namespaces```
 
+### Demo
