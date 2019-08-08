@@ -51,7 +51,7 @@ Webhook running with no issues.
 ### Shutting down a deployment
 There are many different ways to shut down a deployment:
 ```console
-root@ubuntu:~$ cloudlens shutdown deployment [DEPLOYMENT NAME]
+root@ubuntu:~$ cloudlens shutdown deployment [DEPLOYMENT NAME] # Specifying deployment name
 root@ubuntu:~$ cloudlens shutdown deployment --labels label1=Hi # Shutting down deployments using a label selector
 root@ubuntu:~$ cloudlens shutdown deployment [DEPLOYMENT NAME] --namespace default # Specifying a specific namespace to target
 root@ubuntu:~$ cloudlens shutdown deployment [DEPLOYMENT NAME] --all-namespaces # Deleting the deployment in all namespaces
@@ -73,9 +73,14 @@ First, the webhook needs to be started:
 root@ubuntu:~$ cloudlens start webhook
 Successfully created webhook.
 ```
+Before we continue, we must properly configure our Cloudlens project API key. If you haven't already, access the online [hub](https://ixia-sandbox.cloud) and create a project. We'll work in the default namespace.
+```console
+root@ubuntu:~$ cloudlens config key [ENTER YOUR CLOUDLENS PROJECT API KEY] --namespace default
+Successfully configured key for namespace default.
+```
 Now, the DSVW app can be deployed:
 ```console
-root@ubuntu:~$ cloudlens start deployment --yaml demo/test-dsvw.yaml --labels workload=dsvw
+root@ubuntu:~$ cloudlens start deployment --yaml demo/test-dsvw.yaml --labels workload=dsvw --namespace default
 Successfully created deployment demo/test-dsvw.yaml
 ```
 Status check:
@@ -90,5 +95,20 @@ Webhook running with no issues.
 	dsvw-deployment-5d477fc6d8-ztm8j (default)
 ```
 Don't worry if the IDs aren't the same, they're randomly generated.
+Now that the cloudlens agents are up, we need to configure them on the online hub so that they'll pass their traffic to the cloudlens agent sitting inside the sensor app.
+
+We need our online hub to be able to determine between the Cloudlens agents sitting inside the DSVW app versus those inside the sensor app. Click "Define A Group" inside your project on the hub and create a filter such that the group consisting of agents with the tag "workload" set to "dsvw". Create another group that filters agents with the tag "workload" set to "sample_snort_sensor".
+
+Now, connect these two groups so that they can communicate.
+
+If everything is set up correctly, you should be able to view the DSVW app at [localhost:31418](localhost:31418). The Kibana is available at [localhost:5601](localhost:5601)
+
+To simulate real life traffic, run the following script to generate attack traffic:
+```console
+root@ubuntu:~$ python demo/test-traffic.py
+```
+
+The Kibana visualization graphs should be able to capture the various attacks.
+
 
 
