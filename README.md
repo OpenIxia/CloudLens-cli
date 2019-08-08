@@ -45,21 +45,12 @@ Webhook running with no issues.
 	test-deployment-5d477fc6d8-229gb (default)
 ```
 ### Shutting down a deployment
-Shutting down deployments is very similar to starting them:
+There are many different ways to shut down a deployment:
 ```
 cloudlens shutdown deployment [DEPLOYMENT NAME]
-```
-We can also shut down deployments using a label selector
-```
-cloudlens shutdown deployment --labels label1=Hi
-```
-Also, we can shut down deployments in specific namespaces, or in all namespaces:
-```
-cloudlens shutdown deployment [DEPLOYMENT NAME] --namespace default
-```
-Or
-```
-cloudlens shutdown deployment [DEPLOYMENT NAME] --all-namespaces
+cloudlens shutdown deployment --labels label1=Hi # Shutting down deployments using a label selector
+cloudlens shutdown deployment [DEPLOYMENT NAME] --namespace default # Specifying a specific namespace to target
+cloudlens shutdown deployment [DEPLOYMENT NAME] --all-namespaces # Deleting the deployment in all namespaces
 ```
 ### Shutting down the webhook
 ```
