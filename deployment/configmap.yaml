@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sidecar-injector-webhook-configmap
+data:
+  sidecarconfig.yaml: |
+    containers:
+      - name: webhook-injected-cloudlens-sidecar
+        image: ixiacom/cloudlens-agent:latest
+        imagePullPolicy: Always
+        env:
+          - name: apikey
+            valueFrom:
+              secretKeyRef:
+                name: cloudlens-config-secret
+                key: apikey
+        args:
+          - "--accept_eula"
+          - "yes"
+          - "--apikey"
+          - "$(apikey)"
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+              - SYS_ADMIN
+              - SYS_RAWIO
+              - SYS_RESOURCE
