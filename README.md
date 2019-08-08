@@ -22,8 +22,8 @@ Author: Michael Wan
 
 
 ## Usage
-### Starting a webhook
-First, let's start the webhook:
+### Starting the webhook
+The webhook is what's responsible for Cloudlens being automatically injected. The source code for the webhook is [here](https://github.com/OpenIxia/Cloudlens-k8s-webhook.git). To start the webhook, we run:
 ```console
 root@ubuntu:~$ cloudlens start webhook
 Successfully created webhook.
