@@ -1,22 +1,22 @@
 #!/bin/bash
 
-rm -rf michawan-webhook
-url="https://github.com/michael153/michawan-webhook"
+rm -rf cloudlens-cli
+url="https://github.com/OpenIxia/CloudLens-cli"
 git clone "$url" > /dev/null 2>&1
 
 (
     cd "${HOME}"
-    rm -rf ".michawan-webhook"
-    mkdir ".michawan-webhook"
+    rm -rf ".cloudlens-cli"
+    mkdir ".cloudlens-cli"
 )
 
-mv michawan-webhook/* ${HOME}/.michawan-webhook
-rm -rf michawan-webhook
+mv cloudlens-cli/* ${HOME}/.cloudlens-cli
+rm -rf cloudlens-cli
 
 (
     cd "${HOME}"
-    chmod +x "${HOME}/.michawan-webhook/cloudlens.py"
-    chmod +x "${HOME}/.michawan-webhook/deployment/"*.sh
+    chmod +x "${HOME}/.cloudlens-cli/cloudlens.py"
+    chmod +x "${HOME}/.cloudlens-cli/deployment/"*.sh
 )
 
 if [ ! -d "/usr/local/bin" ]; then
@@ -27,7 +27,7 @@ fi
 
 if ! [ -L "/usr/local/bin/cloudlens" ]; then
     echo "Creating symlink..."
-    ln -s "${HOME}/.michawan-webhook/cloudlens.py" "/usr/local/bin/cloudlens"
+    ln -s "${HOME}/.cloudlens-cli/cloudlens.py" "/usr/local/bin/cloudlens"
     echo "Symlink created successfully"
     echo ""
 fi

@@ -25,6 +25,7 @@ import shlex
 import json
 import yaml
 
+DIR_NAME = "cloudlens-cli"
 WEBHOOK_NS = "default"
 
 
@@ -529,7 +530,7 @@ def uninstall_cli():
     """Uninstalls the CLI and its dependencies."""
     cmds = [
         "echo 'Removing dependencies... '",
-        "rm -rf ${HOME}/.michawan-webhook",
+        "rm -rf ${HOME}/.%s" % DIR_NAME,
         "echo 'Success'",
         "echo ''",
         "echo 'Removing symlink...' ",
@@ -573,7 +574,7 @@ def main():
         elif obj == "testapp":
             start(
                 os.path.join(
-                    os.getenv("HOME"), ".michawan-webhook/sleep.yaml"),
+                    os.getenv("HOME"), ".%s/sleep.yaml" % DIR_NAME),
                 labels=args.labels,
                 target_namespace=args.namespace)
         elif obj == "deployment":
