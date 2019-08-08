@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dsvw-deployment
+  labels:
+    name: dsvw
+    run: dsvw-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      run: dsvw-deployment
+  template:
+    metadata:
+      labels:
+        run: dsvw-deployment
+    spec:
+      containers:
+      - name: sample-app
+        image: michawan/sample_app
