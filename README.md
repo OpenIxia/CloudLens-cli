@@ -9,11 +9,12 @@ Author: Michael Wan
 
 
 ## Overview
-- Cloudlens is a CLI prompted by the command ```cloudlens```
+- The Cloudlens CLI eases network visibility in Kubernetes by enabling flexible automatic Cloudlens sidecar agent injection into workloads
 - It offers the following functionalities:
 	- Starting / shutting down webhook and deployments that require Cloudlens auto injection
 	- Configuring different Cloudlens projects per namespace (by specifying a specific API key per each namespace)
 	- Checking the status of webhook and pods with Cloudlens injected
+- This tool is specifically built for the Kubernetes environment.
 
 
 ## Installation
@@ -84,7 +85,7 @@ First, the webhook needs to be started:
 root@ubuntu:~$ cloudlens start webhook
 Successfully created webhook.
 ```
-Before we continue, we must properly configure our Cloudlens project API key. If you haven't already, access the online [hub](https://ixia-sandbox.cloud) and create a project. We'll work in the default namespace in Kubernetes.
+Before we continue, we must properly configure our Cloudlens project API key. If you haven't already, access the [CloudLens SaaS portal](https://ixia.cloud) and create a project. We'll work in the default namespace in Kubernetes.
 ```console
 root@ubuntu:~$ cloudlens config key [ENTER YOUR CLOUDLENS PROJECT API KEY] --namespace default
 Successfully configured key for namespace default.
@@ -113,9 +114,9 @@ root@ubuntu~$ kubectl apply -f demo/test-dsvw-service.yaml
 ``` 
 
 ### 2. Online Cloudlens configuration
-Now that the cloudlens agents are up, we need to configure them on the online hub so that they'll pass their traffic to the cloudlens agent sitting inside the sensor app.
+Now that the cloudlens agents are up, we need to configure them on the [CloudLens SaaS portal](ixia.cloud) so that they'll pass their traffic to the cloudlens agent sitting inside the sensor app.
 
-We need our online hub to be able to determine between the Cloudlens agents sitting inside the DSVW app versus those inside the sensor app. Click "Define A Group" inside your project on the hub and create a filter such that the group consisting of agents with the tag "workload" set to "dsvw". Create another group that filters agents with the tag "workload" set to "sample_snort_sensor".
+We need our portal to be able to determine between the Cloudlens agents sitting inside the DSVW app versus those inside the sensor app. Click "Define A Group" inside your project on the hub and create a filter such that the group consisting of agents with the tag "workload" set to "dsvw". Create another group that filters agents with the tag "workload" set to "sample_snort_sensor".
 
 Now, connect these two groups so that they can communicate.
 
