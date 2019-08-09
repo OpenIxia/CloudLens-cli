@@ -5,7 +5,7 @@ metadata:
   labels:
     app: sidecar-injector
 webhooks:
-  - name: keysight.michawan.webhook
+  - name: keysight.cloudlens.webhook
     clientConfig:
       service:
         name: sidecar-injector-webhook-svc

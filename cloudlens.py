@@ -5,16 +5,16 @@
 Usage:
 cloudlens [-h] {start,shutdown,config,uninstall,status} ...
 cloudlens start [-h] [--yaml YAML] [--namespace NAMESPACE]
-                       [--labels LABELS [LABELS ...]]
-                       {webhook,testapp,deployment}
+                [--labels LABELS [LABELS ...]]
+                {webhook,testapp,deployment}
 cloudlens shutdown [-h] [--namespace NAMESPACE]
-                          [--labels LABELS [LABELS ...]] [--all-namespaces]
-                          {webhook,testapp,deployment} [name]
+                   [--labels LABELS [LABELS ...]] [--all-namespaces]
+                   {webhook,testapp,deployment} [name]
 cloudlens config [-h] --namespace NAMESPACE {key} apikey
 
 
-Able to deploy webhook to automatically inject cloudlens sidecar containers as well as
-facilitating functionalities
+Enables automatic Cloudlens sidecar agent injection, webhook deployment, and
+easy Cloudlens API key configuration
 """
 
 import os
@@ -480,7 +480,7 @@ def start(file, labels=None, target_namespace=None):
         if 'annotations' not in meta:
             meta['annotations'] = {}
         meta["namespace"] = target_namespace
-        meta['annotations']['keysight.michawan.webhook/inject'] = "yes"
+        meta['annotations']['keysight.cloudlens.webhook/inject'] = "yes"
         yaml_content = yaml.dump(contents, default_flow_style=False)
         cmd = "cat <<EOF | kubectl create -f -\n" + yaml_content + "\nEOF"
         if bash(cmd, keep_format=True, silent=True):
