@@ -70,7 +70,7 @@ root@ubuntu:~$ cloudlens shutdown webhook
 For the demo shown during the CLI presentation, a DSVW app was deployed with Cloudlens automatically injected. In the background, there were two apps running: a sensor app to snort for attacks, and a ELK stack to allow for users to visualize and analyze the data.
 
 ![Demo Full Layout](http://michaelwan2000.com/files/cloudlens/layout.png)
-*This diagram depicts the full demo flow*
+.center[*This diagram depicts the full demo flow*]
 
 The sensor and ELK apps exist under the Open Ixia [sample-cloud-ids](https://github.com/OpenIxia/sample-cloud-ids) repo in the respective folders ```sensor/``` and ```events_ui/```. Follow the instructions in the READMEs of both directories to successfully launch the apps.
 
