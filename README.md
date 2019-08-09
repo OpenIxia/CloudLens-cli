@@ -70,7 +70,6 @@ root@ubuntu:~$ cloudlens shutdown webhook
 For the demo shown during the CLI presentation, a DSVW app was deployed with Cloudlens automatically injected. In the background, there were two apps running: a sensor app to snort for attacks, and a ELK stack to allow for users to visualize and analyze the data.
 
 ![Demo Full Layout](http://michaelwan2000.com/files/cloudlens/layout.png)
-.center[*This diagram depicts the full demo flow*]
 
 The sensor and ELK apps exist under the Open Ixia [sample-cloud-ids](https://github.com/OpenIxia/sample-cloud-ids) repo in the respective folders ```sensor/``` and ```events_ui/```. Follow the instructions in the READMEs of both directories to successfully launch the apps.
 
@@ -119,9 +118,15 @@ root@ubuntu~$ kubectl apply -f demo/test-dsvw-service.yaml
 ### 2. Online Cloudlens configuration
 Now that the cloudlens agents are up, we need to configure them on the [CloudLens SaaS portal](ixia.cloud) so that they'll pass their traffic to the cloudlens agent sitting inside the sensor app.
 
-We need our portal to be able to determine between the Cloudlens agents sitting inside the DSVW app versus those inside the sensor app. Click "Define A Group" inside your project on the hub and create a filter such that the group consisting of agents with the tag "workload" set to "dsvw". Create another group that filters agents with the tag "workload" set to "sample_snort_sensor".
+We need our portal to be able to determine between the Cloudlens agents sitting inside the DSVW app versus those inside the sensor app. 
+
+![Define Groups in Saas](http://michaelwan2000.com/files/cloudlens/define-groups.png)
+
+Click "Define A Group" inside your project on the hub and create a filter such that the group consisting of agents with the tag "workload" set to "dsvw". Create another group that filters agents with the tag "workload" set to "sample_snort_sensor".
 
 Now, connect these two groups so that they can communicate.
+
+![Connected Groups](http://michaelwan2000.com/files/cloudlens/cloudlens-saas-project-groups.png)
 
 ### 3. Traffic simulation and visualization
 If everything is set up correctly, you should be able to view the DSVW app at [localhost:31418](localhost:31418). The Kibana is available at [localhost:5601](localhost:5601)
