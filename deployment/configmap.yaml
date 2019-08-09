@@ -9,7 +9,7 @@ data:
         image: ixiacom/cloudlens-agent:latest
         imagePullPolicy: Always
         env:
-          - name: apikey
+          - name: CLOUDLENS_API_KEY
             valueFrom:
               secretKeyRef:
                 name: cloudlens-config-secret
@@ -17,8 +17,6 @@ data:
         args:
           - "--accept_eula"
           - "yes"
-          - "--apikey"
-          - "$(apikey)"
         securityContext:
           capabilities:
             add:
